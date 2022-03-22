@@ -33,20 +33,21 @@ long rSigma(long num)
 */
 string genRSigSeries(long num)
 {
+	string series=" = ";
 	if(num<=0)
 		return "nan";
 	if (num==1)
-	{
-		cout<<"s("<<num<<") = ";
 		return "0";
+
+	if (rSigma(num)==1)
+		return series;
+	series+="1";
+	for (int i = 2; i <= num/2; i++)
+	{
+		if (num % i == 0)
+			series+=( " + " + to_string(i));
 	}
-	cout<<"s("<<num<<") = 1";
-	string series;
-		for (int i = 2; i <= num/2; i++)
-		{
-			if (num % i == 0)
-				series= series + " + " + to_string(i);
-		}
+	series+=" = ";
 	return series;
 }
 /**
@@ -60,13 +61,13 @@ string genRSigSeries(long num)
 */
 void aliquot(long num, string& sequence, long& length)
 {
-	for (int i=2; i<=num; i++)
+	sequence=to_string(num);
+	length=1;
+	while(num>0)
 	{
-		if (num%i==0)
-		{
-			sequence = to_string(i) + ", " + sequence;
-			length=length+1;
-		}
+		sequence+=(", "+to_string(rSigma(num)));
+		num=rSigma(num);
+		length++;
 	}
 
 	return;
@@ -80,7 +81,7 @@ int main() {
 		cout<<"The input must be a positive integer."<<endl;
 	else
 	{
-		cout<<genRSigSeries(int1)<<" = "<<rSigma(int1)<<endl;
+		cout<<"s("<<int1<<")"<<genRSigSeries(int1)<<rSigma(int1)<<endl;
 		cout<<"s("<<int1<<")";
 		if (rSigma(int1)==int1)
 		{
@@ -109,8 +110,8 @@ int main() {
 			cout<<"true"<<endl;
 		else
 			cout<<"false"<<endl;
-		cout<<genRSigSeries(int1)<<" = "<<rSigma(int1)<<endl;
-		cout<<genRSigSeries(int2)<<" = "<<rSigma(int2)<<endl;
+		cout<<"s("<<int1<<")"<<genRSigSeries(int1)<<rSigma(int1)<<endl;
+		cout<<"s("<<int2<<")"<<genRSigSeries(int2)<<rSigma(int2)<<endl;
 	}
 	cout<<"\nEnter an imperfect positive integer -> ";
 	cin>>int1;
