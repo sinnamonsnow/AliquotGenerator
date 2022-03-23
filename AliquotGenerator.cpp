@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <cstdlib>
 using namespace std;
 
 /**
@@ -38,7 +37,6 @@ string genRSigSeries(long num)
 		return "nan";
 	if (num==1)
 		return "0";
-
 	if (rSigma(num)==1)
 		return series;
 	series+="1";
@@ -77,7 +75,7 @@ int main() {
 	string sequen="1, 0";
 	cout<<"Enter a positive integer for its classification -> ";
 	cin>>int1;
-	if (rSigma(int1)==-1)
+	if (int1<1)
 		cout<<"The input must be a positive integer."<<endl;
 	else
 	{
