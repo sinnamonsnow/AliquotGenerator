@@ -72,7 +72,7 @@ void aliquot(long num, string& sequence, long& length)
 }
 int main() {
 	long int1,int2,leng=2;
-	string sequen="1, 0";
+	string sequen;
 	cout<<"Enter a positive integer for its classification -> ";
 	cin>>int1;
 	if (int1<1)
